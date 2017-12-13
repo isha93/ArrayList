@@ -1,58 +1,46 @@
 public class ListArray<T> implements List<T> {
-    private T[] data= (T[]) new Object[1];
-    private int length = 0;
 
-    public ListArray() {
-    }
+    private Object[] array = new Object[1];
+    private int size = 0;
+
     @Override
     public void add(T obj) {
-        length=data.length;
-        int indexTerakhir=length-1;
-        if (data[indexTerakhir]==null)
-            data[indexTerakhir]=obj;
-        else {
-            T[] databaru = (T[]) new Object[data.length * 2];
-            for (int i = 0; i < databaru.length; i++) {
-                if (i < data.length) {
-                    for (int x = 0; x < data.length; x++) {
-                        databaru[x] = data[x];
-                        i=x;
-                    }
-                } else {
-                    databaru[i] = obj;
-                    i=i+1;
-                    length++;
-                }
+        if(size >= array.length){
+            Object[] newArray = new Object[size * 2];
+            for(int i = 0; i < array.length; i++){
+                newArray[i] = array[i];
             }
-
-            data = databaru;
+            array = newArray;
         }
+        array[size] = obj;
+        size++;
     }
-
 
     @Override
     public T get(int index) {
-        if(index == length){
-        }
-        return data[index];
+        if(index >= size) throw new ArrayIndexOutOfBoundsException("Index is out of list bounds");
+        return (T)array[index];
     }
 
     @Override
     public void pop(int index) {
-        for (int i = index; i<length-1; i++){
-
+        if(index >= size) throw new ArrayIndexOutOfBoundsException("Index is out of list bounds");
+        array[index] = null;
+        for(int i = index; i < size-1; i++){
+            array[i] = array[i+1];
         }
+        array[size-1] = null;
+        size--;
     }
 
     @Override
     public int size() {
-        return length;
+        return size;
     }
 
     @Override
     public void clear() {
-        T[] datakosong = (T[]) new Object[data.length];
-        this.length=0;
+        array = new Object[1];
+        size = 0;
     }
-
 }
