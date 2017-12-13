@@ -17,7 +17,6 @@ public class Main {
         System.out.println("isi dari arraylist index kedua adalah = " + doto.get(1));
         System.out.println("isi dari arraylist index ketiga adalah = " + doto.get(2));
 //        System.out.println("isi dari arraylist index 4 adalah = " + doto.get(3));
-//
         doto.pop(1);
 
         System.out.println("panjang dari arraylist sekarang = " + doto.size());

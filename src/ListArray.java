@@ -24,7 +24,6 @@ public class ListArray<T> implements List<T> {
                     length++;
                 }
             }
-
             data = databaru;
         }
     }
@@ -39,9 +38,12 @@ public class ListArray<T> implements List<T> {
 
     @Override
     public void pop(int index) {
-        for (int i = index; i<length-1; i++){
-
+        data[index]=null;
+        for (int i=index; i>length-1; i++){
+            data[i]=data[i+1];
         }
+        data[length-1]= null;
+        length--;
     }
 
     @Override
